@@ -1,20 +1,31 @@
 // Import ketergantungan
-const { pertanyaan, saveContact } = require('./contacts')
+const yargs = require("yargs");
+const { saveContact } = require('./contacts')
 
-// Fungsi utama
-async function main() {
-    try {
-        // Mendapatkan semua data
-        const nama = await pertanyaan('Masukkan nama anda: ')
-        const nohp = await pertanyaan('Masukkan nohp anda: ')
-        const email = await pertanyaan('Masukkan email anda: ')
-
-        saveContact(nama, nohp, email)
-    } catch (error) {
-        console.log(error.message)
-
-        rl.close()
+// Jika command adalah add
+yargs.command({
+    command: 'add',
+    describe: 'Menambahkan contact baru',
+    builder: {
+        nama: {
+            demandOption: true,
+            describe: 'Input Nama lengkap',
+            type: 'string',
+        },
+        email: {
+            demandOption: false,
+            describe: 'Input Email',
+            type: 'string',
+        },
+        nohp: {
+            demandOption: true,
+            describe: 'Input No HP',
+            type: 'string',
+        }
+    },
+    handler({ nama, email, nohp }) {
+        saveContact({ nama, email, nohp })
     }
-}
+})
 
-main()
+yargs.parse()

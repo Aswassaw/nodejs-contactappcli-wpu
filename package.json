@@ -1,0 +1,30 @@
+{
+  "name": "project-contact-app",
+  "version": "1.0.0",
+  "description": "Aplikasi Pengelolaan Contact dari tutorial WebProgrammingUnpas",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andry-pebrianto/nodejs-contactappcli-wpu.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "Javascript",
+    "WPU",
+    "ContactApp",
+    "CLI"
+  ],
+  "author": "Andry Pebrianto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andry-pebrianto/nodejs-contactappcli-wpu/issues"
+  },
+  "homepage": "https://github.com/andry-pebrianto/nodejs-contactappcli-wpu#readme",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "validator": "^13.6.0"
+  }
+}

@@ -11,14 +11,19 @@ const dirPath = './data'
 const dataPath = './data/contacts.json'
 !fs.existsSync(dataPath) ? fs.writeFileSync(dataPath, '[]') : null
 
-// Function untuk save contact
-const saveContact = ({ nama, email, nohp}) => {
-    // Menyatukan semua data
-    const contact = { nama, email, nohp }
+const loadContact = () => {
     // Mengambil isi dari file contacts.json
     const file = fs.readFileSync('data/contacts.json', 'utf-8')
     // Memparse file string menjadi json
-    const contacts = JSON.parse(file)
+    return JSON.parse(file)
+}
+
+// Function untuk save contact
+const saveContact = ({ nama, email, nohp }) => {
+    // Menyatukan semua data
+    const contact = { nama, email, nohp }
+    // Load data
+    const contacts = loadContact()
 
     // Cek duplikat
     const duplikat = contacts.find((contact) => contact.nama === nama)
@@ -53,4 +58,44 @@ const saveContact = ({ nama, email, nohp}) => {
     console.log(chalk.green('Data berhasil ditambahkan.'))
 }
 
-module.exports = { saveContact }
+// Function untuk menampilkan semua data
+const listContact = () => {
+    const contacts = loadContact()
+    console.log(chalk.blue.bold('Daftar Contact.'))
+
+    contacts.forEach((contact, index) => {
+        console.log(chalk`${index + 1}. {bold.green ${contact.nama}} - {yellow ${contact.nohp}} ${contact.email ? chalk`- {red ${contact.email}}` : ''}`)
+    })
+}
+
+// Function untuk menampilkan detail sebuah data
+const detailContact = (nama) => {
+    const contacts = loadContact()
+
+    const contact = contacts.find((contact) => contact.nama.toLowerCase() === nama.toLowerCase())
+
+    if (contact) {
+        console.log(chalk.blue.bold(`Detail Contact ${contact.nama}.`))
+        console.log(chalk`1. {bold.green ${contact.nama}} - {yellow ${contact.nohp}} ${contact.email ? chalk`- {red ${contact.email}}` : ''}`)
+    } else {
+        console.log(chalk`{bgRed Contact {bold ${nama}} tidak ditemukan, silahkan coba lagi!}`)
+    }
+}
+
+const deleteContact = (nama) => {
+    const contacts = loadContact()
+
+    // Menghapus data yang dipilih menggunakan filter
+    const contactsAfterDelete = contacts.filter(contact => contact.nama.toLowerCase() !== nama.toLowerCase())
+
+    if (contacts.length !== contactsAfterDelete.length) {
+        // Write file
+        fs.writeFileSync('data/contacts.json', JSON.stringify(contactsAfterDelete))
+
+        console.log(chalk.green('Data tersebut berhasil dihapus.'))
+    } else {
+        console.log(chalk`{bgRed Contact tersebut tidak ditemukan, silahkan coba lagi!}`)
+    }
+}
+
+module.exports = { saveContact, listContact, detailContact, deleteContact }

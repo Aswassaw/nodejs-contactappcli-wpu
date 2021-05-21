@@ -11,7 +11,7 @@ NodeJS Contact App CLI WPU adalah Aplikasi Pengelolaan Contact berbasis CLI dari
   ### Add
   - Command: `node app add --nama='Andry Pebrianto' --email='andrypeb227@gmail.com' --nohp='085742536772'`.
   - Param: --nama (required), --email (optional), --nohp (required).
-  - Desc: Command ini digunakan untuk menambahkan sebuah data pada sebuah contact. Ketiga param yang dimasukkan tidak diharuskan dimasukkan secara urut.
+  - Desc: Command ini digunakan untuk menambahkan sebuah data pada contact. Ketiga param yang dimasukkan tidak harus dimasukkan secara urut.
 
   ### List
   - Command: `node app list`

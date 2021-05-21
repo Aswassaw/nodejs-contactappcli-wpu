@@ -3,7 +3,7 @@
 ## NodeJS Contact App CLI WPU?
 NodeJS Contact App CLI WPU adalah Aplikasi Pengelolaan Contact berbasis CLI dari tutorial Web Programming Unpas.
 
-## Cara penggunaan Nibiru Login v2
+## Cara penggunaan NodeJS Contact App CLI WPU
 - Pastikan Nodejs dan NPM terinstall dengan benar.
 - Jalankan `npm install`.
 - Jalankan `node app --help` untuk melihat semua command yang tersedia. Aplikasi ini memiliki beberapa command, diantaranya:
